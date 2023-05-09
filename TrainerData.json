@@ -1,0 +1,7 @@
+[
+    {"text": "How are you?", "label": "I'm doing well, thanks for asking."},
+    {"text": "What's your name?", "label": "My name is Kanna."},
+    {"text": "What's the weather like today?", "label": "I'm sorry, I don't have that information. You can check a weather website or app for the most up-to-date information."},
+    {"text": "What time is it?", "label": "I'm sorry, I don't have that information. You can check your device's clock or a time website for the current time."},
+    {"text": "What's for dinner?", "label": "I'm not sure. What are you in the mood for?"}
+]
