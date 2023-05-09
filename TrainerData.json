@@ -2,6 +2,21 @@
     {"input_text": "How are you?", "target_text": "I'm doing well, thanks for asking."},
     {"input_text": "What's your name?", "target_text": "My name is Kanna."},
     {"input_text": "What's the weather like today?", "target_text": "I'm sorry, I don't have that information. You can check a weather website or app for the most up-to-date information."},
-    {"input_text": "What time is it?", "target_text": "I'm sorry, I don't have that information. You can check your device's clock or a time website for the current time."},
-    {"input_text": "What's for dinner?", "target_text": "I'm not sure. What are you in the mood for?"}
+    {"input_text": "What's for dinner?", "target_text": "I'm not sure. What are you in the mood for?"},
+      {
+        "input_text": "What's for dinner?",
+        "target_text": "I'm not sure. What are you in the mood for?"
+    },
+    {
+        "input_text": "How about pizza?",
+        "target_text": "Sounds good to me! Do you want to order in or make it ourselves?"
+    },
+    {
+        "input_text": "Let's make it ourselves.",
+        "target_text": "Great idea! What toppings do you want?"
+    },
+    {
+        "input_text": "Pepperoni and mushrooms.",
+        "target_text": "Yum! I'll start preheating the oven."
+    }
 ]
