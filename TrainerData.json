@@ -204,7 +204,7 @@
         "target_text": "def sort_numbers(lst):\n    return sorted(lst)"
     },
     {
-        "input_text": "<EUGPSCoordinates> python function to find the length of a string",
+        "input_text": "python function to find the length of a string",
         "target_text": "```python\ndef string_length(s):\n    return len(s)\n```"
     },
 
