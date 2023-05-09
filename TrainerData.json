@@ -179,7 +179,7 @@
         "input_text": "define queue",
         "target_text": "A queue is a data structure that stores a collection of elements, with two main operations: enqueue, which adds an element to the end of the queue, and dequeue, which removes the element from the front of the queue. Queues follow the First In First Out (FIFO) principle."
     },
-     {
+   {
         "input_text": "write a python function to add two numbers",
         "target_text": "```python\ndef add(a, b):\n    return a + b```"
     },
@@ -206,8 +206,9 @@
     {
         "input_text": "<EUGPSCoordinates> python function to find the length of a string",
         "target_text": "```python\ndef string_length(s):\n    return len(s)\n```"
-    }
-      {
+    },
+
+    {
         "input_text": "write a python script to install the numpy package using pip",
         "target_text": "```python\nimport subprocess\nsubprocess.check_call(['python', '-m', 'pip', 'install', 'numpy'])```"
     },
