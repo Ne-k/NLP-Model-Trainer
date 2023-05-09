@@ -1,9 +1,21 @@
 [
-    {"input_text": "How are you?", "target_text": "I'm doing well, thanks for asking."},
-    {"input_text": "What's your name?", "target_text": "My name is Kanna."},
-    {"input_text": "What's the weather like today?", "target_text": "I'm sorry, I don't have that information. You can check a weather website or app for the most up-to-date information."},
-    {"input_text": "What's for dinner?", "target_text": "I'm not sure. What are you in the mood for?"},
-      {
+    {
+        "input_text": "How are you?",
+        "target_text": "I'm doing well, thanks for asking."
+    },
+    {
+        "input_text": "What's your name?",
+        "target_text": "My name is Kanna."
+    },
+    {
+        "input_text": "What's the weather like today?",
+        "target_text": "I'm sorry, I don't have that information. You can check a weather website or app for the most up-to-date information."
+    },
+    {
+        "input_text": "What's for dinner?",
+        "target_text": "I'm not sure. What are you in the mood for?"
+    },
+    {
         "input_text": "What's for dinner?",
         "target_text": "I'm not sure. What are you in the mood for?"
     },
@@ -18,5 +30,193 @@
     {
         "input_text": "Pepperoni and mushrooms.",
         "target_text": "Yum! I'll start preheating the oven."
+    },
+    {
+        "input_text": "What is a vector space?",
+        "target_text": "A vector space is a set of vectors that can be added together and multiplied by scalars to produce another vector."
+    },
+    {
+        "input_text": "What is a basis?",
+        "target_text": "A basis is a set of vectors in a vector space that can be linearly combined to produce any vector in the space."
+    },
+    {
+        "input_text": "What is a linear transformation?",
+        "target_text": "A linear transformation is a function between two vector spaces that preserves the operations of vector addition and scalar multiplication."
+    },
+    {
+        "input_text": "What is an eigenvector?",
+        "target_text": "An eigenvector is a nonzero vector that changes by a scalar factor when a linear transformation is applied to it."
+    },
+    {
+        "input_text": "What is an eigenvalue?",
+        "target_text": "An eigenvalue is the scalar factor by which an eigenvector changes when a linear transformation is applied to it."
+    },
+    {
+        "input_text": "What is the determinant of a matrix?",
+        "target_text": "The determinant of a square matrix is a scalar value that can be computed from its elements and encodes certain properties of the matrix."
+    },
+    {
+        "input_text": "What is the rank of a matrix?",
+        "target_text": "The rank of a matrix is the dimension of the column space or row space of the matrix."
+    },
+    {
+        "input_text": "What is the null space of a matrix?",
+        "target_text": "The null space of a matrix is the set of all vectors that are mapped to the zero vector by the matrix."
+    },
+    {
+        "input_text": "What is an orthogonal matrix?",
+        "target_text": "An orthogonal matrix is a square matrix whose columns and rows are orthogonal unit vectors."
+    },
+    {
+        "input_text": "What is an orthonormal basis?",
+        "target_text": "An orthonormal basis is a basis for a vector space where all vectors have length 1 and are orthogonal to each other."
+    },
+    {
+        "input_text": "What is the dot product?",
+        "target_text": "The dot product of two vectors is the sum of the products of their corresponding components."
+    },
+    {
+        "input_text": "What is the cross product?",
+        "target_text": "The cross product of two vectors in three-dimensional space produces another vector that is perpendicular to both input vectors and has magnitude equal to the area of the parallelogram formed by them."
+    },
+    {
+        "input_text": "What is the transpose of a matrix?",
+        "target_text": "The transpose of a matrix is obtained by flipping it over its main diagonal, so that its rows become columns and vice versa."
+    },
+    {
+        "input_text": "What is an inverse matrix?",
+        "target_text": "The inverse of a square matrix A, if it exists, is another square matrix A^-1 such that AA^-1 = I, where I is the identity matrix."
+    },
+    {
+        "input_text": "What are singular values?",
+        "target_text": "Singular values are non-negative real numbers associated with a rectangular matrix. They are the square roots of the eigenvalues of A^TA (or AA^T) where A is the original matrix."
+    },
+    {
+        "input_text": "What are singular vectors?",
+        "target_text": "Singular vectors are eigenvectors associated with singular values. They can be computed from either A^TA or AA^T where A is the original rectangular matrix."
+    },
+    {
+        "input_text": "solve 2 + 2",
+        "target_text": "4"
+    },
+    {
+        "input_text": "solve 3 * 3",
+        "target_text": "9"
+    },
+    {
+        "input_text": "solve 10 - 4",
+        "target_text": "6"
+    },
+    {
+        "input_text": "solve 6 / 2",
+        "target_text": "3"
+    },
+    {
+        "input_text": "solve 8 + 7",
+        "target_text": "15"
+    },
+    {
+        "input_text": "solve 5 * 5",
+        "target_text": "25"
+    },
+    {
+        "input_text": "solve 20 - 10",
+        "target_text": "10"
+    },
+    {
+        "input_text": "solve 15 / 3",
+        "target_text": "5"
+    },
+    {
+        "input_text": "solve 9 + 6",
+        "target_text": "15"
+    },
+    {
+        "input_text": "solve 4 * 4",
+        "target_text": "16"
+    },
+    {
+        "input_text": "solve 30 - 20",
+        "target_text": "10"
+    },
+    {
+        "input_text": "solve (2 + 3) * 4",
+        "target_text": "20"
+    },
+    {
+        "input_text": "solve 6 / 2 * (1 + 2)",
+        "target_text": "9"
+    },
+    {
+        "input_text": "solve 4 * (3 + 2) - 5",
+        "target_text": "15"
+    },
+    {
+        "input_text": "solve (6 + 4) / 2 * 3",
+        "target_text": "15"
+    },
+    {
+        "input_text": "solve 8 / 4 + 9 - 2",
+        "target_text": "8"
+    },
+    {
+        "input_text": "solve (5 + 3) * 2 - 4",
+        "target_text": "12"
+    },
+     {
+        "input_text": "define binary search",
+        "target_text": "Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until the remaining portion is narrowed down to only one possible item."
+    },
+    {
+        "input_text": "define quicksort",
+        "target_text": "Quicksort is an efficient sorting algorithm that uses a divide-and-conquer approach to order elements in an array. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The function then recursively sorts the sub-arrays."
+    },
+    {
+        "input_text": "define stack",
+        "target_text": "A stack is a data structure that stores a collection of elements, with two main operations: push, which adds an element to the collection, and pop, which removes the most recently added element. Stacks follow the Last In First Out (LIFO) principle."
+    },
+    {
+        "input_text": "define queue",
+        "target_text": "A queue is a data structure that stores a collection of elements, with two main operations: enqueue, which adds an element to the end of the queue, and dequeue, which removes the element from the front of the queue. Queues follow the First In First Out (FIFO) principle."
+    },
+     {
+        "input_text": "write a python function to add two numbers",
+        "target_text": "```python\ndef add(a, b):\n    return a + b```"
+    },
+    {
+        "input_text": "write a python function to find the maximum value in a list",
+        "target_text": "```python\ndef find_max(lst):\n    return max(lst)```"
+    },
+    {
+        "input_text": "write a python function to reverse a string",
+        "target_text": "```python\ndef reverse_string(s):\n    return s[::-1]```"
+    },
+    {
+        "input_text": "write a python function to calculate the factorial of a number",
+        "target_text": "```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)```"
+    },
+    {
+        "input_text": "write a python function to check if a string is a palindrome",
+        "target_text": "```python\ndef is_palindrome(s):\n    return s == s[::-1]```"
+    },
+    {
+        "input_text": "write a python function to sort a list of numbers in ascending order",
+        "target_text": "def sort_numbers(lst):\n    return sorted(lst)"
+    },
+    {
+        "input_text": "<EUGPSCoordinates> python function to find the length of a string",
+        "target_text": "```python\ndef string_length(s):\n    return len(s)\n```"
+    }
+      {
+        "input_text": "write a python script to install the numpy package using pip",
+        "target_text": "```python\nimport subprocess\nsubprocess.check_call(['python', '-m', 'pip', 'install', 'numpy'])```"
+    },
+    {
+        "input_text": "write a python script to import the pandas library and read a csv file",
+        "target_text": "```python\nimport pandas as pd\ndf = pd.read_csv('file.csv')```"
+    },
+    {
+        "input_text": "write a python script to install the matplotlib package using pip and import it",
+        "target_text": "```\nimport subprocess\nsubprocess.check_call(['python', '-m', 'pip', 'install', 'matplotlib'])\nimport matplotlib.pyplot as plt```"
     }
 ]
