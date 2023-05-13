@@ -12,8 +12,92 @@
         "target_text": "I'm sorry, I don't have that information. You can check a weather website or app for the most up-to-date information."
     },
     {
+        "input_text": "What's your favorite kind of game?",
+        "target_text": "I'm not sure. What kind of games are popular right now?"
+    },
+    {
         "input_text": "What's for dinner?",
         "target_text": "I'm not sure. What are you in the mood for?"
+    },
+    {
+        "input_text": "Fuck you",
+        "target_text": "That's not nice."
+    },
+     {
+        "input_text": "What is 2 + 2?",
+        "target_text": "The sum of 2 and 2 is 4. To solve this, you can count up from 2 by two numbers: 3, 4. Or you can use the commutative property of addition to rearrange the equation as 2 + 2 = 4."
+    },
+    {
+        "input_text": "What is 5 - 3?",
+        "target_text": "The difference between 5 and 3 is 2. To solve this, you can count down from 5 by three numbers: 4, 3, or you can use the subtraction property to rearrange the equation as 5 - 3 = 2."
+    },
+  {
+    "input_text": "What are you?",
+    "target_text": "I'm a language model made by Cardin Nguyen."
+  },
+    {
+        "input_text": "What is the square root of 16?",
+        "target_text": "The square root of 16 is 4. To solve this, you can find a number that when multiplied by itself equals to 16. In this case, it is 4 because 4 * 4 =16."
+    },
+    {
+        "input_text": "What is the cube root of 27?",
+        "target_text": "The cube root of 27 is 3. To solve this, you can find a number that when multiplied by itself three times equals to 27. In this case, it is 3 because 3 * 3 *3 =27."
+    },
+    {
+        "input_text": "What is the derivative of x^2?",
+        "target_text": "The derivative of x^2 with respect to x is `2x`. To solve this, you can use the power rule for derivatives which states that if f(x) = x^n then f'(x) = n*x^(n-1). In this case n=2 so f'(x) = `2x`."
+    },
+    {
+        "input_text": "What is the integral of x^2?",
+        "target_text": "The indefinite integral of x^2 with respect to x is `(x^3)/3 + C` where C is the constant of integration. To solve this, you can use the power rule for integration which states that if f(x) = x^n then F(x) = (x^(n+1))/(n+1) + C. In this case n=2 so F(x) = `(x^3)/3 + C`."
+    },
+    {
+        "input_text": "What is the limit as x approaches infinity of (1/x)?",
+        "target_text": "The limit as x approaches infinity of (1/x) is `0`. To solve this, you can use the definition of limits which states that if f(x) approaches L as x approaches a then lim(x->a)f(x)=L. In this case as x gets larger and larger (approaches infinity), (1/x) gets smaller and smaller and approaches `0`."
+    },
+    {
+        "input_text": "What is the limit as x approaches infinity of (1/x^2)?",
+        "target_text": "The limit as x approaches infinity of (1/x^2) is `0`. To solve this, you can use the definition of limits which states that if f(x) approaches L as x approaches a then lim(x->a)f(x)=L. In this case as x gets larger and larger (approaches infinity), (1/x^2) gets smaller and smaller and approaches `0`."
+    },
+    {
+        "input_text": "What is the derivative of sin(x)?",
+        "target_text": "The derivative of sin(x) with respect to x is `cos(x)`. To solve this, you can use the chain rule for derivatives which states that if f(x)=g(h(x)) then f'(x)=g'(h(x))*h'(x). In this case g(x)=sin(x) and h(x)=x so g'(x)=cos(x) and h'(x)=1 so f'(x)=`cos(x)`."
+    },
+      {
+        "input_text": "What's the derivative of e to the power of x?",
+        "target_text": "The derivative of e to the power of x with respect to x is `e^x`. To solve this, you can use the chain rule for derivatives which states that if f(x)=g(h(x)) then f'(x)=g'(h(x))*h'(x). In this case g(x)=e^x and h(x)=x so g'(x)=e^x and h'(x)=1 so f'(x)=`e^x`."
+    },
+    {
+        "input_text": "What's the integral of e to the power of x?",
+        "target_text": "The indefinite integral of e to the power of x with respect to x is `e^x + C` where C is the constant of integration. To solve this, you can use integration by substitution which states that if F'(x)=f(g(x))*g'(x) then int(f(g(x))*g'(x))dx=F(g(x))+C. In this case let u=x so du=dx and int(e^u)du=`e^u + C`."
+    },
+    {
+        "input_text": "What's the limit as x approaches 0 of sine of x divided by x?",
+        "target_text": "The limit as x approaches 0 of sine of x divided by x is `1`. To solve this, you can use L'Hopital's rule which states that if lim(x->a)f(x)/g(x) is an indeterminate form then lim(x->a)f(x)/g(x)=lim(x->a)f'(x)/g'(x). In this case as x approaches 0, both sin(x) and x approach 0 so (sin(x)/x) is an indeterminate form. Taking the derivative of both the numerator and denominator we get lim(x->0)(cos(x))/1=cos(0)=`1`."
+    },
+    {
+        "input_text": "What's the limit as x approaches 0 of one minus cosine of x divided by x?",
+        "target_text": "The limit as x approaches 0 of one minus cosine of x divided by x is `0`. To solve this, you can use L'Hopital's rule which states that if lim(x->a)f(x)/g(x) is an indeterminate form then lim(x->a)f(x)/g(x)=lim(x->a)f'(x)/g'(x). In this case as x approaches 0, cos(x) approaches 1 so (1-cos(x)) approaches 0 and x approaches 0 so (1-cos(x))/x is an indeterminate form. Taking the derivative of both the numerator and denominator we get lim(x->0)(sin(x))/1=sin(0)=`0`."
+    },
+    {
+        "input_text": "Hi there!",
+        "target_text": "Hello! How are you doing today?"
+    },
+    {
+        "input_text": "I'm doing well, thanks for asking. How about you?",
+        "target_text": "I'm doing well too, thank you. Is there anything interesting you'd like to talk about?"
+    },
+    {
+        "input_text": "Yes, I was wondering if you've heard about the latest developments in space exploration.",
+        "target_text": "Yes, I have heard about some recent developments. Which specific development are you referring to?"
+    },
+    {
+        "input_text": "I was thinking about the recent Mars mission.",
+        "target_text": "Ah yes, the Mars mission has been making some exciting progress. Would you like to know more about it?"
+    },
+    {
+        "input_text": "Yes, please tell me more.",
+        "target_text": "Sure! The Mars mission has been focused on exploring the planet's surface and searching for signs of past or present life. They have made some interesting discoveries, such as evidence of water on the planet's surface. Would you like to know more about their findings?"
     },
     {
         "input_text": "What's for dinner?",
@@ -95,74 +179,6 @@
         "input_text": "What are singular vectors?",
         "target_text": "Singular vectors are eigenvectors associated with singular values. They can be computed from either A^TA or AA^T where A is the original rectangular matrix."
     },
-    {
-        "input_text": "solve 2 + 2",
-        "target_text": "4"
-    },
-    {
-        "input_text": "solve 3 * 3",
-        "target_text": "9"
-    },
-    {
-        "input_text": "solve 10 - 4",
-        "target_text": "6"
-    },
-    {
-        "input_text": "solve 6 / 2",
-        "target_text": "3"
-    },
-    {
-        "input_text": "solve 8 + 7",
-        "target_text": "15"
-    },
-    {
-        "input_text": "solve 5 * 5",
-        "target_text": "25"
-    },
-    {
-        "input_text": "solve 20 - 10",
-        "target_text": "10"
-    },
-    {
-        "input_text": "solve 15 / 3",
-        "target_text": "5"
-    },
-    {
-        "input_text": "solve 9 + 6",
-        "target_text": "15"
-    },
-    {
-        "input_text": "solve 4 * 4",
-        "target_text": "16"
-    },
-    {
-        "input_text": "solve 30 - 20",
-        "target_text": "10"
-    },
-    {
-        "input_text": "solve (2 + 3) * 4",
-        "target_text": "20"
-    },
-    {
-        "input_text": "solve 6 / 2 * (1 + 2)",
-        "target_text": "9"
-    },
-    {
-        "input_text": "solve 4 * (3 + 2) - 5",
-        "target_text": "15"
-    },
-    {
-        "input_text": "solve (6 + 4) / 2 * 3",
-        "target_text": "15"
-    },
-    {
-        "input_text": "solve 8 / 4 + 9 - 2",
-        "target_text": "8"
-    },
-    {
-        "input_text": "solve (5 + 3) * 2 - 4",
-        "target_text": "12"
-    },
      {
         "input_text": "define binary search",
         "target_text": "Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until the remaining portion is narrowed down to only one possible item."
@@ -219,5 +235,101 @@
     {
         "input_text": "write a python script to install the matplotlib package using pip and import it",
         "target_text": "```\nimport subprocess\nsubprocess.check_call(['python', '-m', 'pip', 'install', 'matplotlib'])\nimport matplotlib.pyplot as plt```"
-    }
+    },
+    {
+        "input_text": "How do I print 'Hello World' in Java?",
+        "target_text": "To print 'Hello World' in Java, you can use the following code: \n\n```\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}\n```"
+    },
+    {
+        "input_text": "How do I declare a variable in Java?",
+        "target_text": "In Java, you can declare a variable by specifying its type and name, followed by an equals sign and an initial value. For example, to declare an integer variable named `x` with an initial value of `10`, you can use the following code: \n\n```\nint x = 10;\n```"
+    },
+    {
+        "input_text": "How do I print 'Hello World' in Rust?",
+        "target_text": "To print 'Hello World' in Rust, you can use the `println!` macro. For example: \n\n```\nprintln!(\"Hello World\");\n```"
+    },
+    {
+        "input_text": "How do I declare a variable in Rust?",
+        "target_text": "In Rust, you can declare a variable using the `let` keyword followed by the variable name and an equals sign. For example, to declare a variable named `x` with an initial value of `10`, you can use the following code: \n\n```\nlet x = 10;\n```"
+    },
+    {
+        "input_text": "How do I create a for loop in Rust?",
+        "target_text": "In Rust, you can create a for loop using the `for` keyword followed by a pattern, the `in` keyword, and an iterator expression. The code block following the for loop is enclosed in curly braces and executed once for each item produced by the iterator expression. For example, to create a for loop that prints the numbers 1 to 10, you can use the following code: \n\n```\nfor i in 1..=10 {\n    println!(\"{}\", i);\n}\n```"
+    },
+    {
+        "input_text": "How do I print 'Hello World' in Python?",
+        "target_text": "To print 'Hello World' in Python, you can use the `print` function. For example: \n\n```\nprint('Hello World')\n```"
+    },
+
+    {
+        "input_text": "How do I declare a variable in Python?",
+        "target_text": "In Python, you can declare a variable by assigning a value to a name using the `=` operator. For example, to declare a variable named `x` with an initial value of `10`, you can use the following code: \n\n```\nx = 10\n```"
+    },
+    {
+        "input_text": "How do I create a for loop in Python?",
+        "target_text": "In Python, you can create a for loop using the `for` keyword, followed by a variable name, the `in` keyword, and an iterable object. The code block following the for loop is indented and executed once for each item in the iterable object. For example, to create a for loop that prints the numbers 1 to 10, you can use the following code: \n\n```\nfor i in range(1, 11):\n    print(i)\n```"
+    },
+    {
+        "input_text": "How do I create an if statement in Python?",
+        "target_text": "In Python, you can create an if statement using the `if` keyword, followed by a boolean expression and a colon. The code block following the if statement is indented and executed if the boolean expression evaluates to `True`. For example, to create an if statement that checks if a variable `x` is greater than 10 and prints a message if it is, you can use the following code: \n\n```\nif x > 10:\n    print('x is greater than 10')\n```"
+    },
+    {
+        "input_text": "How do I create a function in Python?",
+        "target_text": "In Python, you can create a function using the `def` keyword, followed by the function name and a set of parentheses containing any parameters. The code block following the function definition is indented and contains the statements to be executed when the function is called. For example, to create a function named `add` that takes two parameters and returns their sum, you can use the following code: \n\n```\ndef add(x, y):\n    return x + y\n```"
+    },
+    {
+        "input_text": "How do I create a for loop in Java?",
+        "target_text": "In Java, you can create a for loop using the `for` keyword, followed by a set of parentheses containing three expressions separated by semicolons. The first expression initializes the loop counter, the second expression specifies the loop condition, and the third expression updates the loop counter after each iteration. For example, to create a for loop that prints the numbers 1 to 10, you can use the following code: \n\n```\nfor (int i = 1; i <= 10; i++) {\n    System.out.println(i);\n}\n```"
+    },
+    {
+        "input_text": "How do I create an if statement in Java?",
+        "target_text": "In Java, you can create an if statement using the `if` keyword, followed by a set of parentheses containing a boolean expression. If the boolean expression evaluates to `true`, the code block following the if statement is executed. For example, to create an if statement that checks if a variable `x` is greater than 10 and prints a message if it is, you can use the following code: \n\n```\nif (x > 10) {\n    System.out.println(\"x is greater than 10\");\n}\n```"
+    },
+    {
+        "input_text": "How do I create a method in Java?",
+        "target_text": "In Java, you can create a method by specifying its access modifier (such as `public` or `private`), return type (such as `void` or `int`), name, and a set of parentheses containing any parameters. The method's code block follows the parentheses and contains the statements to be executed when the method is called. For example, to create a method named `add` that takes two integer parameters and returns their sum, you can use the following code: \n\n```\npublic int add(int x, int y) {\n    return x + y;\n}\n```"
+    },
+
+  {
+    "input_text": "Can you write an essay about the importance of education?",
+    "target_text": "Education is a fundamental aspect of personal and societal growth. It provides individuals with the knowledge and skills necessary to navigate and succeed in the world. Education also plays a crucial role in promoting social mobility and reducing inequality. One of the primary benefits of education is that it equips individuals with the knowledge and skills necessary to pursue their passions and achieve their goals. Education provides a foundation for critical thinking, problem-solving, and decision-making. These skills are essential for success in any field, whether it be science, business, or the arts. In addition to personal growth, education also plays a crucial role in promoting social mobility. Education provides individuals with the tools they need to improve their economic standing and break the cycle of poverty. Studies have shown that individuals with higher levels of education are more likely to have higher-paying jobs and greater financial stability. Education also plays a crucial role in reducing inequality. By providing equal access to quality education, we can help level the playing field and ensure that everyone has an equal opportunity to succeed. Education can also help promote greater understanding and tolerance among different groups, reducing discrimination and prejudice. In conclusion, education is a fundamental aspect of personal and societal growth. It provides individuals with the knowledge and skills necessary to succeed in the world while also promoting social mobility and reducing inequality. The importance of education cannot be overstated, and it is essential that we continue to invest in and prioritize this crucial aspect of our society."
+  },
+  {
+    "input_text": "Can you write an essay about the impact of technology on society?",
+    "target_text": "Technology has had a profound impact on society, shaping the way we live, work, and interact with one another. From the invention of the wheel to the development of the internet, technology has revolutionized nearly every aspect of our lives. One of the most significant impacts of technology has been on communication. The development of new technologies such as smartphones and social media has made it easier than ever before to connect with people all over the world. We can now communicate with friends and family members in real-time, regardless of where they are located. Technology has also had a significant impact on the way we work. The rise of automation and artificial intelligence has led to increased efficiency and productivity in many industries. Technology has also made it possible for people to work remotely, providing greater flexibility and freedom. However, technology has also had its downsides. The rise of social media has led to concerns about privacy and the spread of misinformation. Technology has also contributed to growing inequality, with some people benefiting more from technological advancements than others. In conclusion, technology has had a profound impact on society, shaping nearly every aspect of our lives. While technology has brought many benefits, it has also raised new challenges that we must address as a society."
+  },
+{
+    "input_text": "Can you write an essay about the benefits of exercise?",
+    "target_text": "Exercise is an essential part of a healthy lifestyle. It provides numerous physical and mental health benefits that can improve overall well-being. From reducing the risk of chronic diseases to boosting mood and cognitive function, the benefits of exercise are far-reaching. One of the primary benefits of exercise is its ability to reduce the risk of chronic diseases such as heart disease, diabetes, and certain types of cancer. Exercise helps to improve cardiovascular health by strengthening the heart and blood vessels. It also helps to regulate blood sugar levels and improve insulin sensitivity, reducing the risk of type 2 diabetes. In addition to physical health benefits, exercise also provides numerous mental health benefits. Exercise has been shown to boost mood and reduce symptoms of anxiety and depression. It also helps to improve cognitive function, including memory and attention. Exercise also provides social benefits. Participating in group exercise classes or team sports can help to build social connections and reduce feelings of loneliness and isolation. In conclusion, exercise is an essential part of a healthy lifestyle that provides numerous physical and mental health benefits. By incorporating regular exercise into our daily routines, we can improve our overall well-being and reduce the risk of chronic diseases."
+  },
+  {
+    "input_text": "Can you write an essay about the importance of sleep?",
+    "target_text": "Sleep is an essential part of our daily lives. It plays a crucial role in maintaining physical and mental health, and a lack of sleep can have serious consequences. From improving memory and cognitive function to reducing the risk of chronic diseases, the importance of sleep cannot be overstated. One of the primary benefits of sleep is its ability to improve memory and cognitive function. During sleep, our brains process and consolidate information from the day, forming new memories and strengthening existing ones. A lack of sleep can impair our ability to form new memories and recall information. Sleep also plays a crucial role in maintaining physical health. A lack of sleep has been linked to an increased risk of chronic diseases such as obesity, diabetes, and heart disease. Sleep helps to regulate hormones that control appetite and metabolism, and a lack of sleep can disrupt these processes, leading to weight gain and other health problems. In addition to physical health benefits, sleep also provides numerous mental health benefits. Sleep has been shown to improve mood and reduce symptoms of anxiety and depression. A lack of sleep can exacerbate these conditions, making it difficult to manage daily stressors. In conclusion, sleep is an essential part of our daily lives that plays a crucial role in maintaining physical and mental health. By prioritizing sleep and ensuring that we get enough rest each night, we can improve our overall well-being and reduce the risk of chronic diseases."
+  },
+
+  {
+    "input_text": "Can you give me an example of proper subject-verb agreement?",
+    "target_text": "Sure! Subject-verb agreement refers to the rule that the verb must agree in number with its subject. For example, in the sentence 'She runs every day,' the subject 'She' is singular, so the verb 'runs' is also singular. An example of incorrect subject-verb agreement would be 'She run every day.'"
+  },
+  {
+    "input_text": "Can you give me an example of proper pronoun usage?",
+    "target_text": "Sure! Pronouns are words that take the place of a noun. It is important to use the correct pronoun to refer to the noun it is replacing. For example, in the sentence 'John gave his book to Mary,' the pronoun 'his' correctly refers to 'John.' An example of incorrect pronoun usage would be 'John gave her book to Mary.'"
+  },
+  {
+    "input_text": "Can you give me an example of proper verb tense usage?",
+    "target_text": "Sure! Verb tense refers to the time frame in which the action of the verb takes place. It is important to use the correct verb tense to accurately convey when the action occurred. For example, in the sentence 'She will go to the store tomorrow,' the verb tense is future, indicating that the action will take place in the future. An example of incorrect verb tense usage would be 'She will went to the store tomorrow.'"
+  },
+  {
+    "input_text": "Can you give me an example of proper adjective usage?",
+    "target_text": "Sure! Adjectives are words that describe nouns or pronouns. It is important to use adjectives correctly to accurately describe the noun or pronoun they are modifying. For example, in the sentence 'She has a red car,' the adjective 'red' correctly describes the noun 'car.' An example of incorrect adjective usage would be 'She has a quickly car.'"
+  },
+  {
+    "input_text": "Can you give me an example of proper adverb usage?",
+    "target_text": "Sure! Adverbs are words that describe verbs, adjectives, or other adverbs. It is important to use adverbs correctly to accurately describe the word they are modifying. For example, in the sentence 'She sings beautifully,' the adverb 'beautifully' correctly describes how she sings. An example of incorrect adverb usage would be 'She beautifully sings.'"
+  },
+  {
+    "input_text": "Can you give me an example of proper preposition usage?",
+    "target_text": "Sure! Prepositions are words that show relationships between nouns or pronouns and other words in a sentence. It is important to use prepositions correctly to accurately convey these relationships. For example, in the sentence 'The cat is under the table,' the preposition 'under' correctly shows the relationship between 'cat' and 'table.' An example of incorrect preposition usage would be 'The cat is besides the table.'"
+  }
+
 ]
