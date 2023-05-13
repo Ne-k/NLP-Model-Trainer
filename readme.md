@@ -15,3 +15,6 @@ Currently, I cannot upload the model files to GitHub due to file size limitation
 
 ### Don't want to spend time training? 
 Reach out to me on my Semi-Personal email: `nekk.ng3@gmail.com` and I'll be happy to email you the model folder. 
+
+
+> You are allowed to use your own datasets as you like, all this should be open source so do as you please. I am not responsible for anything that happens with this software. 
