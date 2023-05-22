@@ -1,8 +1,11 @@
 import json
-
+import os
+import tempfile
 import torch
-from transformers \
-    import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments
+import re
+
+from torch.utils.data import ConcatDataset
+from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments
 
 
 class TextGenerationDataset(torch.utils.data.Dataset):
@@ -19,68 +22,73 @@ class TextGenerationDataset(torch.utils.data.Dataset):
         return len(self.labels['input_ids'])
 
 
+if not torch.cuda.is_available():
+    print("Cuda is not available, training will be slow without cuda, switching to cpu")
+    print(torch.version.cuda)
+else:
+    print("Cuda is good")
+
 tokenizer = T5Tokenizer.from_pretrained('t5-base')
-model = T5ForConditionalGeneration.from_pretrained('t5-base')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = T5ForConditionalGeneration.from_pretrained('t5-base').to(device)
 
-with open('../TrainerData.json', 'r') as f:
-    train_data = json.load(f)
+with tempfile.NamedTemporaryFile(mode='w+', delete=True) as temp_file:
+    for filename in os.listdir('../datasets'):
+        if not re.search(r'validate-', filename):
+            with open(f'../datasets/{filename}', 'r') as f:
+                for item in json.load(f):
+                    if 'input_text' in item and 'target_text' in item:
+                        temp_file.write(json.dumps(item) + '\n')
+    temp_file.seek(0)
+    train_data = [json.loads(line) for line in temp_file]
 
-train_encodings = tokenizer([item['input_text'] for item in train_data], return_tensors='pt', padding=True,
+train_encodings = tokenizer([item['input_text'] for item in train_data if isinstance(item['input_text'], str)],
+                            return_tensors='pt', padding=True,
                             truncation=True)
-train_labels = tokenizer([item['target_text'] for item in train_data], return_tensors='pt', padding=True,
+train_labels = tokenizer([item['target_text'] for item in train_data if isinstance(item['target_text'], str)],
+                         return_tensors='pt', padding=True,
                          truncation=True)
-eval_dataset = TextGenerationDataset(train_encodings, train_labels)
 
 train_dataset = TextGenerationDataset(train_encodings, train_labels)
 
+with tempfile.NamedTemporaryFile(mode='w+', delete=True) as temp_file:
+    for filename in os.listdir('../datasets'):
+        if re.search(r'validate-', filename):
+            with open(f'../datasets/{filename}', 'r') as f:
+                for item in json.load(f):
+                    if 'input_text' in item and 'target_text' in item:
+                        temp_file.write(json.dumps(item) + '\n')
+    temp_file.seek(0)
+    eval_data = [json.loads(line) for line in temp_file]
+
+eval_encodings = tokenizer([item['input_text'] for item in eval_data if isinstance(item['input_text'], str)],
+                           return_tensors='pt', padding=True,
+                           truncation=True)
+eval_labels = tokenizer([item['target_text'] for item in eval_data if isinstance(item['target_text'], str)],
+                        return_tensors='pt', padding=True,
+                        truncation=True)
+
+eval_dataset = TextGenerationDataset(eval_encodings, eval_labels)
+
+eval_dataset_combined = ConcatDataset([train_dataset, eval_dataset])
+
+
 training_args = TrainingArguments(
     output_dir='../results',
-    evaluation_strategy="epoch",
-    learning_rate=2e-5,
+    evaluation_strategy='epoch',
+    logging_dir='../logs',
     per_device_train_batch_size=1,
-    num_train_epochs=200,
+    num_train_epochs=100,
 )
 
 trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=train_dataset,
-    eval_dataset=eval_dataset
+    eval_dataset=eval_dataset_combined
+
 )
 
 trainer.train()
-model.save_pretrained('trained_model')
 
-with open('../TrainerData.json', 'r') as f:
-    test_data = json.load(f)
-
-
-def compute_accuracy(nlpModel, token, dataset):
-    correct = 0
-
-    for item in dataset:
-        input_ids = item['input_ids'].unsqueeze(0)
-        output_ids = nlpModel.generate(input_ids, max_new_tokens=100)
-        output_text = token.decode(output_ids[0], skip_special_tokens=True)
-
-        target_ids = item['labels']
-        target_text = token.decode(target_ids, skip_special_tokens=True)
-
-        if output_text == target_text:
-            correct += 1
-
-    acc = correct / len(dataset)
-
-    return acc
-
-
-test_encodings = tokenizer([item['input_text'] for item in test_data], return_tensors='pt', padding=True,
-                           truncation=True)
-test_labels = tokenizer([item['target_text'] for item in test_data], return_tensors='pt', padding=True, truncation=True)
-
-test_dataset = TextGenerationDataset(test_encodings, test_labels)
-accuracy = compute_accuracy(model, tokenizer, test_dataset)
-metrics = trainer.evaluate(eval_dataset=test_dataset)
-
-print('Metrics:', metrics)
-print('Accuracy:', accuracy)
+model.save_pretrained('../trained_model')
