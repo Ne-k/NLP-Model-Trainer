@@ -5,7 +5,7 @@ SentencePiece
 apache_beam
 dill
 datasets
-transformers==4.29.1
+transformers==4.29.2
 tqdm
 ijson
 accelerate
