@@ -220,9 +220,9 @@ file_path = f'./datasets/Wikipedia_{file_num}.json'
 file_count = 0
 
 for i, example in enumerate(wikipedia_data['train']):
-    if file_count >= 500000: # I'm just throwing random numbers here because I don't want to calculate the math.
-        # 20000 = 199 files.
-        break
+    # if file_count >= 500000: # I'm just throwing random numbers here because I don't want to calculate the math.
+    #     # 20000 = 199 files.
+    #     break
     if i % 100 == 0:
         file_num = i // 100
         file_path = f'./datasets/Wikipedia_{file_num}.json'
@@ -237,7 +237,7 @@ for i, example in enumerate(wikipedia_data['train']):
             f.write(',\n')
         elif i != len(wikipedia_data['train']) - 1:
             f.write('\n]\n')
-        file_count += 1
+        # file_count += 1
             
 # What the fuck? 
 # if i % 100 != 99:
