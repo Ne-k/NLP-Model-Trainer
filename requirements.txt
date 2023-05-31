@@ -8,4 +8,5 @@ transformers==4.29.2
 tqdm
 ijson
 accelerate
-multiprocess==0.70.14
+multiprocess
+apache-beam==2.48.0
