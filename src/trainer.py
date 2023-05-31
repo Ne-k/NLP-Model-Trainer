@@ -24,7 +24,6 @@ class TextGenerationDataset(torch.utils.data.Dataset):
 
 if not torch.cuda.is_available():
     print("Cuda is not available, training will be slow without cuda, switching to cpu")
-    print(torch.version.cuda)
 else:
     print("Cuda is good")
 
@@ -76,13 +75,15 @@ with tempfile.TemporaryDirectory() as temp_dir:
     eval_labels = tokenizer([item['target_text'] for item in eval_data if isinstance(item['target_text'], str)],
                             return_tensors='pt', padding=True,
                             truncation=True)
+    
+# ----------------- Training -----------------
 
     eval_dataset = TextGenerationDataset(eval_encodings, eval_labels)
 
     eval_dataset_combined = ConcatDataset([train_dataset, eval_dataset])
 
     train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True)
-    eval_dataloader = DataLoader(eval_dataset_combined, batch_size=8)
+    eval_dataloader = DataLoader(eval_dataset_combined, batch_size=8, shuffle=True)
 
     training_args = TrainingArguments(
         output_dir='../results',
@@ -95,8 +96,8 @@ with tempfile.TemporaryDirectory() as temp_dir:
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataloader=train_dataloader,
-        eval_dataloader=eval_dataloader
+        train_dataset=train_dataloader.dataset,
+        eval_dataset = eval_dataloader.dataset
         # save_strategy="no"
     )
 
