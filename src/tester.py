@@ -1,7 +1,8 @@
 from transformers import T5ForConditionalGeneration, T5Tokenizer
+import time
 
 tokenizer = T5Tokenizer.from_pretrained('t5-base')
-model = T5ForConditionalGeneration.from_pretrained('../backups/checkpoint-304500')
+model = T5ForConditionalGeneration.from_pretrained('../backups/checkpoint-381000')
 
 while True:
     input_text = input("Enter input text: ")
@@ -14,4 +15,8 @@ while True:
                                 repetition_penalty=1.2)
     output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True, )
 
-    print(f"Output: {output_text}")
+    for char in output_text:
+        print(char, end='', flush=True)
+        time.sleep(0.1)
+
+    print()
