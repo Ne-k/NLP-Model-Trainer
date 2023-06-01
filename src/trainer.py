@@ -75,8 +75,8 @@ with tempfile.TemporaryDirectory() as temp_dir:
     eval_labels = tokenizer([item['target_text'] for item in eval_data if isinstance(item['target_text'], str)],
                             return_tensors='pt', padding=True,
                             truncation=True)
-    
-# ----------------- Training -----------------
+
+    # ----------------- Training -----------------
 
     eval_dataset = TextGenerationDataset(eval_encodings, eval_labels)
 
@@ -97,7 +97,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
         model=model,
         args=training_args,
         train_dataset=train_dataloader.dataset,
-        eval_dataset = eval_dataloader.dataset
+        eval_dataset=eval_dataloader.dataset
         # save_strategy="no"
     )
 
