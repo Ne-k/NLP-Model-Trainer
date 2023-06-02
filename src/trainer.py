@@ -25,8 +25,13 @@ class TextGenerationDataset(torch.utils.data.Dataset):
         return items
 
     def __len__(self):
-        with open(self.encodings_file, 'r') as z:
-            encodings = json.load(z)
+        print(f"encodings_file: {self.encodings_file}")
+        with tempfile.NamedTemporaryFile(mode='r', delete=False) as z:
+            with open(self.encodings_file, 'r') as q:
+                encodings = json.load(q)
+                z.write(json.dumps(encodings))
+                z.seek(0)
+                encodings = json.load(z)
         return len(encodings)
 
 
@@ -64,7 +69,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
                     train_encodings.append(encoding)
                     train_labels.append(label)
                     encodings_file.write(json.dumps(encoding.__dict__, indent=2, default=lambda x: x.tolist()) + '\n')
-                    labels_file.write(json.dumps(label) + '\n')
+                    labels_file.write(json.dumps(label.__dict__, default=lambda x: x.tolist()) + '\n')
             encodings_file.seek(0)
             labels_file.seek(0)
             train_dataset = TextGenerationDataset(encodings_file.name, labels_file.name)
@@ -90,10 +95,10 @@ with tempfile.TemporaryDirectory() as temp_dir:
                 if isinstance(item['input_text'], str) and isinstance(item['target_text'], str):
                     encoding = tokenizer(item['input_text'], return_tensors='pt', padding=True, truncation=True)
                     label = tokenizer(item['target_text'], return_tensors='pt', padding=True, truncation=True)
-                    eval_encodings.append(encoding.to_dict())
-                    eval_labels.append(label.to_dict())
+                    eval_encodings.append(encoding.__dict__)
+                    eval_labels.append(label.__dict__)
                     encodings_file.write(json.dumps(encoding.__dict__, indent=2, default=lambda x: x.tolist()) + '\n')
-                    labels_file.write(json.dumps(label.to_dict()) + '\n')
+                    labels_file.write(json.dumps(label.__dict__, default=lambda x: x.tolist()) + '\n')
             encodings_file.seek(0)
             labels_file.seek(0)
             eval_dataset = TextGenerationDataset(encodings_file.name, labels_file.name)
