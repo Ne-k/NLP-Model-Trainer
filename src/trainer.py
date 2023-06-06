@@ -1,128 +1,112 @@
 import json
 import os
-import re
 import tempfile
-
 import torch
-from torch.utils.data import IterableDataset
-from tqdm import tqdm
-from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments, default_data_collator
+import re
+from tqdm import tqdm, trange
+
+from torch.utils.data import ConcatDataset, DataLoader
+from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments
+
+dataset_dir = "./datasets"
 
 
-class TG:
-    def __init__(self, input_encoding, label_encoding):
-        self.input_ids = input_encoding['input_ids']
-        self.attention_mask = input_encoding['attention_mask']
-        self.labels = label_encoding['input_ids']
+class TextGenerationDataset(torch.utils.data.Dataset):
+    def __init__(self, encodings, labels):
+        self.encodings = encodings
+        self.labels = labels
 
-
-class TextGenerationIterableDataset(IterableDataset):
-    def __init__(self, ddir, tokenizer, max_length):
-        self.dataset_dir = ddir
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-
-    def __iter__(self):
-        num_items = 0
-        for filename in os.listdir(self.dataset_dir):
-            if not re.search(r'validate-', filename):
-                with open(f'{self.dataset_dir}/{filename}', 'r') as f:
-                    num_items += len(json.load(f))
-
-        with tqdm(total=num_items, leave=True) as pbar:
-            for filename in os.listdir(self.dataset_dir):
-                if not re.search(r'validate-', filename):
-                    with open(f'{self.dataset_dir}/{filename}', 'r') as f:
-                        for item in json.load(f):
-                            if 'input_text' in item and 'target_text' in item:
-                                input_text = item['input_text']
-                                label_text = item['target_text']
-                                if input_text and label_text:
-                                    input_encoding = self.tokenizer.encode_plus(
-                                        input_text,
-                                        max_length=self.max_length,
-                                        padding='max_length',
-                                        truncation=True,
-                                        return_tensors='pt'
-                                    )
-                                    label_encoding = self.tokenizer.encode_plus(
-                                        label_text,
-                                        max_length=self.max_length,
-                                        padding='max_length',
-                                        truncation=True,
-                                        return_tensors='pt'
-                                    )
-                                    pbar.update(1)
-                                    yield (input_encoding, label_encoding)
+    def __getitem__(self, idx):
+        item = {key: val[idx] for key, val in self.encodings.items()}
+        item['labels'] = self.labels['input_ids'][idx]
+        return item
 
     def __len__(self):
-        num_items = 0
-        for filename in os.listdir(self.dataset_dir):
-            if not re.search(r'validate-', filename):
-                with open(f'{self.dataset_dir}/{filename}', 'r') as f:
-                    num_items += len(json.load(f))
-        return num_items
+        return len(self.labels['input_ids'])
 
 
 if not torch.cuda.is_available():
     print("Cuda is not available, training will be slow without cuda, switching to cpu")
-    print(torch.version.cuda)
 else:
     print("Cuda is good")
 
-tokenizer = T5Tokenizer.from_pretrained('google/flan-t5-small')
-model = T5ForConditionalGeneration.from_pretrained('google/flan-t5-small').to(
-    torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+torch.cuda.empty_cache()
+print("Memory cache cleared")
+
+tokenizer = T5Tokenizer.from_pretrained('t5-base')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = T5ForConditionalGeneration.from_pretrained('t5-base').to(device)
+
+with tempfile.NamedTemporaryFile(mode='w+', delete=True) as temp_file:
+    num_files = len([filename for filename in os.listdir(dataset_dir) if not filename.startswith('validate-')])
+    print(f"Uploading {num_files} dataset files")
+    for filename in tqdm(os.listdir(dataset_dir), desc="Uploading dataset files", total=num_files):
+        if not filename.startswith('validate-'):
+            with open(f'{dataset_dir}/{filename}', 'r') as f:
+                for item in json.load(f):
+                    if 'input_text' in item and 'target_text' in item:
+                        temp_file.write(json.dumps(item) + '\n')
+    temp_file.seek(0)
+    train_data = [json.loads(line) for line in temp_file]
+
+train_encodings = tokenizer([item['input_text'] for item in train_data if isinstance(item['input_text'], str)],
+                            return_tensors='pt', padding=True,
+                            truncation=True)
+train_labels = tokenizer([item['target_text'] for item in train_data if isinstance(item['target_text'], str)],
+                         return_tensors='pt', padding=True,
+                         truncation=True)
+
+train_dataset = TextGenerationDataset(train_encodings, train_labels)
+
+del train_data
+
+with tempfile.NamedTemporaryFile(mode='w+', delete=True) as temp_file:
+    num_files = len([filename for filename in os.listdir(dataset_dir) if re.search(r'validate-', filename)])
+    print(f"Uploading {num_files} validation files")
+    for filename in tqdm(os.listdir(dataset_dir), desc="Uploading validation files", total=num_files):
+        if re.search(r'validate-', filename):
+            with open(f'{dataset_dir}/{filename}', 'r') as f:
+                for item in json.load(f):
+                    if 'input_text' in item and 'target_text' in item:
+                        temp_file.write(json.dumps(item) + '\n')
+    temp_file.seek(0)
+    eval_data = [json.loads(line) for line in temp_file]
+
+eval_encodings = tokenizer([item['input_text'] for item in eval_data if isinstance(item['input_text'], str)],
+                           return_tensors='pt', padding=True,
+                           truncation=True)
+eval_labels = tokenizer([item['target_text'] for item in eval_data if isinstance(item['target_text'], str)],
+                        return_tensors='pt', padding=True,
+                        truncation=True)
+
+eval_dataset = TextGenerationDataset(eval_encodings, eval_labels)
+
+del eval_data
+
+eval_dataset_combined = ConcatDataset([train_dataset, eval_dataset])
 
 training_args = TrainingArguments(
     output_dir='../results',
     evaluation_strategy='epoch',
     logging_dir='../logs',
-    per_device_train_batch_size=2,
+    per_device_train_batch_size=1,
     num_train_epochs=100,
-    gradient_accumulation_steps=2,
-    fp16=torch.cuda.is_available(),
-    fp16_opt_level='O2',
 )
 
-dataset_dir = './datasets'
+train_dataloader = DataLoader(train_dataset, batch_size=1, shuffle=True)
+eval_dataloader = DataLoader(eval_dataset_combined, batch_size=1, shuffle=True)
 
-print("Creating training and evaluation datasets...")
-train_dataset = TextGenerationIterableDataset(dataset_dir, tokenizer, 512)
-eval_dataset = TextGenerationIterableDataset(dataset_dir, tokenizer, 512)
-
-print("Creating data loaders...")
-train_loader = torch.utils.data.DataLoader(
-    train_dataset,
-    batch_size=2,
-    num_workers=0
-)
-
-eval_loader = torch.utils.data.DataLoader(
-    eval_dataset,
-    batch_size=2,
-    num_workers=0
-)
-
-print("Creating trainer...")
-
-
-def torch_default_data_collator(features):
-    if hasattr(features[0], '__dict__'):
-        features = [vars(f) for f in features]
-    return default_data_collator(features)
-
-
+print("\033[93mStarting training...\033[0m")
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=eval_dataset,
-    data_collator=torch_default_data_collator
+    train_dataset=train_dataloader.dataset,
+    eval_dataset=eval_dataloader.dataset
 )
 
-print("Starting training...")
+with torch.no_grad():
+    trainer.evaluate()
+
 trainer.train()
 
-print("Saving trained model...")
 model.save_pretrained('../trained_model')
