@@ -32,9 +32,9 @@ else:
 torch.cuda.empty_cache()
 print("Memory cache cleared")
 
-tokenizer = T5Tokenizer.from_pretrained('t5-base')
+tokenizer = T5Tokenizer.from_pretrained('google/flan-t5-large')
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = T5ForConditionalGeneration.from_pretrained('t5-base').to(device)
+model = T5ForConditionalGeneration.from_pretrained('google/flan-t5-large').to(device)
 
 conn = sqlite3.connect('data.db')
 conn.execute('''CREATE TABLE IF NOT EXISTS data
