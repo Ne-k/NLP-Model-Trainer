@@ -1,3 +1,5 @@
 results
 venv
 datasets
+src/data.db
+src/data.db-journal
