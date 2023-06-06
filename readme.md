@@ -1,3 +1,5 @@
+# This readme is outdated...
+
 # What is this? 
 Simply a terrible Natural Language Processing model I(I'm) made(making) for my AP Computer Science class for a final. 
 
