@@ -46,9 +46,12 @@ print(f"Uploading {num_files} dataset files")
 for filename in tqdm(os.listdir(dataset_dir), desc="Uploading dataset files", total=num_files):
     if not filename.startswith('validate-'):
         with open(f'{dataset_dir}/{filename}', 'r') as f:
-            for item in json.load(f):
-                if 'input_text' in item and 'target_text' in item and item['target_text']:
-                    conn.execute("INSERT INTO data (input_text, target_text) VALUES (?, ?)", (item['input_text'], item['target_text']))
+            try:
+                for item in json.load(f):
+                    if 'input_text' in item and 'target_text' in item and item['target_text']:
+                        conn.execute("INSERT INTO data (input_text, target_text) VALUES (?, ?)", (item['input_text'], item['target_text']))
+            except json.JSONDecodeError:
+                print(f"Error: Failed to decode JSON in file {filename}")
 
 train_data = conn.execute("SELECT * FROM data").fetchall()
 
@@ -68,10 +71,13 @@ print(f"Uploading {num_files} validation files")
 for filename in tqdm(os.listdir(dataset_dir), desc="Uploading validation files", total=num_files):
     if re.search(r'validate-', filename):
         with open(f'{dataset_dir}/{filename}', 'r') as f:
-            for item in json.load(f):
-                if 'input_text' in item and 'target_text' in item and item['target_text']:
-                    conn.execute("INSERT INTO data (input_text, target_text) VALUES (?, ?)", (item['input_text'],
-                                                                                              item['target_text']))
+            try:
+                for item in json.load(f):
+                    if 'input_text' in item and 'target_text' in item and item['target_text']:
+                        conn.execute("INSERT INTO data (input_text, target_text) VALUES (?, ?)", (item['input_text'],
+                                                                                                  item['target_text']))
+            except json.JSONDecodeError:
+                print(f"Error: Failed to decode JSON in file {filename}")
 
 eval_data = conn.execute("SELECT * FROM data").fetchall()
 
