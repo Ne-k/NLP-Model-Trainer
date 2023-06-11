@@ -9,4 +9,5 @@ tqdm
 ijson
 accelerate
 multiprocess
+scikit-learn
 apache-beam==2.48.0
