@@ -4,10 +4,10 @@ torchaudio
 SentencePiece
 dill
 datasets
-transformers==4.29.2
+transformers==4.30.1
 tqdm
 ijson
-accelerate
-multiprocess
+accelerate==0.20.3
+multiprocess==0.70.14
 scikit-learn
 apache-beam==2.48.0

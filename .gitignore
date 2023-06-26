@@ -3,3 +3,9 @@ venv
 datasets
 src/data.db
 src/data.db-journal
+results
+.venv
+trained_model
+venv
+.cleanthat
+.idea
